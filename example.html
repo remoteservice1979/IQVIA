@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<script type="text/javascript" src="../src/OrgChart.js"></script>
+			<div id="google_translate_element"></div>
+
+<script type="text/javascript">  
+        function googleTranslateElementInit() {  
+            new google.translate.TranslateElement(  
+                {pageLanguage: 'hindi'},  
+                'random'  
+            );  
+        }  
+    </script> 
+		<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		<script type="text/javascript">
+			var tree;
+			function init() {
+				var treeContainer = document.getElementById("treeContainer");
+				tree = new oj.visualization.OrgChart({
+					"container" : treeContainer,
+					"options" : {
+						"highlightSubtree" : true,
+						"allowCollapse" : true,
+						"selectable" : true,
+						"showHoverColors" : true,
+						"editable" : true
+					}
+				});
+				tree.setData([
+				["Bios", "Bios", "","12-23-2022","Progress","Hanesh"],
+					["SDTM", "Bios", "","12-23-2022","Progress","Hanesh"],
+					["Sprint9", "SDTM", "","12-23-2022","Progress","Hanesh"],
+						["Ticket 323", "Sprint9", "Chetan","12-12-2022","Chetan"],
+						["Ticket 324", "Sprint9", "Kusikan","12-21-2022","Kusikan"],
+					["Genie Web", "Bios", "","12-12-2023","Purvaj","Sam"],	
+					["Sprint8", "Genie Web", "","12-12-2023","Progress","Hanesh"],
+						["Ticket 323", "Sprint8", "Satya","12-12-2023","Chetan"],
+						["Ticket 324", "Sprint8", "Askay","12-12-2023","Kusikan"],
+					["Ticket 823", "Sprint8", "Non","Under Progress","Satya"],
+
+					["aSap", "Bios", "","12-12-2023","Purvaj","Sam"],	
+				     	["Sprint7", "aSap", "","12-12-2023","Hanesh"],
+      					["Ticket 825", "Sprint7", "Kiran","12-12-2023","Satya"],
+				]);
+				tree.draw();
+				tree.setEventListener("node-select", selectHandler);
+				tree.setEventListener("node-collapse", collapseHandler);
+				tree.setEventListener("node-dbclick", dbclickHandler);
+				tree.setEventListener("node-hover", hoverHandler);
+			}
+
+			function selectHandler(eventObject) {
+				console.log("Selected : " + eventObject["nodeObject"].name);
+			}
+
+			function collapseHandler(eventObject) {
+				debugger;
+				console.log("Collpased : " + eventObject["nodeObject"].name + ", isCollapsed : " + eventObject["isCollapsed"]);
+			}			
+
+			function dbclickHandler(eventObject) {
+				debugger;
+				console.log("Double clicked : " + eventObject["nodeObject"].name);
+			}
+
+			function hoverHandler(eventObject) {
+				console.log("Hovered : " + eventObject["nodeObject"].name);
+			}
+
+			function getData() {
+				var data = tree.getData();
+				debugger;
+			}
+		</script>
+	</head>
+	<body style="background-image: url('https://www.bing.com/th?id=OIP.1bOYS1pCLs-nh6yXFslkCwHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2');" onload="init();">
+		<div id="treeContainer"/>
+		<button id="test" onclick="getData();">Get Data 2</button>
+		
+	</body>
+</html>
